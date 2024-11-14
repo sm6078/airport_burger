@@ -1,4 +1,4 @@
-package com.javaacademy.it;
+package com.javaacademy.it.burger;
 
 import com.javaacademy.burger.*;
 import com.javaacademy.burger.dish.Dish;

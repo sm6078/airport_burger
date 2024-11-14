@@ -16,6 +16,9 @@ import static java.math.RoundingMode.CEILING;
  */
 @Slf4j
 public class PayTerminal {
+    private static final int DELAY_DEFAULT = 1_000_000_000;
+    private static final BigDecimal RATE_USD_RUB = BigDecimal.valueOf(95);
+
 
     /**
      * Оплата блюда
@@ -48,7 +51,7 @@ public class PayTerminal {
      */
     @SneakyThrows
     private BigDecimal integrationWithBank() {
-        Thread.sleep(1_000_000_000);
-        return BigDecimal.valueOf(95);
+        Thread.sleep(DELAY_DEFAULT);
+        return RATE_USD_RUB;
     }
 }
