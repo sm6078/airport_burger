@@ -2,9 +2,7 @@ package com.javaacademy.unit.burger;
 
 import com.javaacademy.burger.Kitchen;
 import com.javaacademy.burger.Waitress;
-import com.javaacademy.burger.dish.Dish;
 import com.javaacademy.burger.dish.DishType;
-import com.javaacademy.burger.exception.KitchenHasNoGasException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +16,7 @@ public class WaitressTest {
         Kitchen kitchenMock = Mockito.mock(Kitchen.class);
         Waitress waitress = new Waitress();
         boolean expectedResult = true;
-        Assertions.assertEquals(expectedResult,  waitress.giveOrderToKitchen(DishType.BURGER, kitchenMock));
+        Assertions.assertEquals(expectedResult, waitress.giveOrderToKitchen(DishType.BURGER, kitchenMock));
     }
 
     @Test
@@ -27,6 +25,6 @@ public class WaitressTest {
         Kitchen kitchenMock = Mockito.mock(Kitchen.class);
         Waitress waitress = new Waitress();
         boolean expectedResult = false;
-        Assertions.assertEquals(expectedResult,  waitress.giveOrderToKitchen(DishType.FUAGRA, kitchenMock));
+        Assertions.assertEquals(expectedResult, waitress.giveOrderToKitchen(DishType.FUAGRA, kitchenMock));
     }
 }

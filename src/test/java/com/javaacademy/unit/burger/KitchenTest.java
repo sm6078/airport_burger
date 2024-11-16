@@ -31,7 +31,7 @@ public class KitchenTest {
     }
 
     @Test
-    @DisplayName("Исключение не возможно приготовить данное блюдо")
+    @DisplayName("Исключение не возможно приготовить фуагра")
     public void coolFailure() {
         Kitchen kitchen = new Kitchen();
         Assertions.assertThrows(UnsupportedDishTypeException.class, () -> kitchen.cook(DishType.FUAGRA));

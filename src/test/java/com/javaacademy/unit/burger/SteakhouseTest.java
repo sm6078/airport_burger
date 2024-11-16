@@ -1,7 +1,6 @@
 package com.javaacademy.unit.burger;
 
 import com.javaacademy.burger.*;
-import com.javaacademy.burger.dish.DishType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +28,7 @@ public class SteakhouseTest {
     }
 
     @Test
-    @DisplayName("Успешно заказываем картошку и получаем чек со стоимостью 1 доллар от фейкового терминала")
+    @DisplayName("Успешно заказываем картошку и получаем чек со стоимостью 1 доллар")
     public void orderPotatoByDollarFakeTerminalMakeOrderSuccess() {
         Waitress waitressMock = Mockito.mock(Waitress.class);
         Mockito.when(waitressMock.giveOrderToKitchen(any(), any())).thenReturn(true);
@@ -43,8 +42,7 @@ public class SteakhouseTest {
     }
 
     @Test
-    @DisplayName("Успешно заказываем бургер и получаем чек со стоимостью 1 мозамбикский доллар "
-            + "от фейкового терминала")
+    @DisplayName("Успешно заказываем бургер и получаем чек со стоимостью 1 мозамбикский доллар")
     public void orderBurgerByMozambicanDollarFakeTerminalMakeOrderSuccess() {
         Waitress waitressMock = Mockito.mock(Waitress.class);
         Mockito.when(waitressMock.giveOrderToKitchen(any(), any())).thenReturn(true);
