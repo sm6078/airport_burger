@@ -1,6 +1,10 @@
 package com.javaacademy.unit.burger;
 
-import com.javaacademy.burger.*;
+import com.javaacademy.burger.Kitchen;
+import com.javaacademy.burger.PayTerminal;
+import com.javaacademy.burger.Waitress;
+import com.javaacademy.burger.Paycheck;
+import com.javaacademy.burger.Steakhouse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,12 +12,18 @@ import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 
-import static com.javaacademy.burger.Currency.*;
-import static com.javaacademy.burger.dish.DishType.*;
+import static com.javaacademy.burger.Currency.RUB;
+import static com.javaacademy.burger.Currency.USD;
+import static com.javaacademy.burger.Currency.MOZAMBICAN_DOLLARS;
+import static com.javaacademy.burger.dish.DishType.BURGER;
+import static com.javaacademy.burger.dish.DishType.RIBS;
+import static com.javaacademy.burger.dish.DishType.FRIED_POTATO;
 import static java.math.BigDecimal.valueOf;
 import static org.mockito.ArgumentMatchers.any;
 
 public class SteakhouseTest {
+    private static final BigDecimal PRICE_RIBS = valueOf(700);
+
     @Test
     @DisplayName("Успешно заказываем и получаем чек от фейкового терминала")
     public void whenWaitressAndKitchenMockPayTerminalSpyThenMakeOrderSuccess() {
@@ -22,7 +32,7 @@ public class SteakhouseTest {
         Kitchen kitchenMock = Mockito.mock(Kitchen.class);
         PayTerminal payTerminalSpy = Mockito.spy(PayTerminal.class);
         Steakhouse steakhouse = new Steakhouse(waitressMock, kitchenMock, payTerminalSpy);
-        Paycheck expectedPaycheck = new Paycheck(valueOf(700), RUB, RIBS);
+        Paycheck expectedPaycheck = new Paycheck(PRICE_RIBS, RUB, RIBS);
         Paycheck resultPaycheck = steakhouse.makeOrder(RIBS, RUB);
         Assertions.assertEquals(expectedPaycheck, resultPaycheck);
     }

@@ -11,13 +11,18 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
+import static java.math.BigDecimal.valueOf;
+
 public class PayTerminalTest {
+
+    private static final BigDecimal PRICE_BURGER = valueOf(300);
 
     @Test
     @DisplayName("Успешная оплата")
     public void paySuccess() {
         PayTerminal payTerminal = new PayTerminal();
-        Paycheck expectedResult = new Paycheck(BigDecimal.valueOf(300), Currency.RUB, DishType.BURGER);
+        Paycheck expectedResult = new Paycheck(PRICE_BURGER,
+                Currency.RUB, DishType.BURGER);
         Paycheck result = payTerminal.pay(DishType.BURGER, Currency.RUB);
         Assertions.assertEquals(expectedResult, result);
     }
@@ -26,6 +31,7 @@ public class PayTerminalTest {
     @DisplayName("Исключение во время оплаты, мозабмийские доллары не принимаются к оплате")
     public void payFailure() {
         PayTerminal payTerminal = new PayTerminal();
-        Assertions.assertThrows(NotAcceptedCurrencyException.class, () -> payTerminal.pay(DishType.BURGER, Currency.MOZAMBICAN_DOLLARS));
+        Assertions.assertThrows(NotAcceptedCurrencyException.class,
+                () -> payTerminal.pay(DishType.BURGER, Currency.MOZAMBICAN_DOLLARS));
     }
 }

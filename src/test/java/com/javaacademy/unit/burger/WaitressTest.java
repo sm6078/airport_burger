@@ -12,7 +12,7 @@ public class WaitressTest {
 
     @Test
     @DisplayName("Успешное принятие заказа")
-    public void WaitressAcceptedOrderSuccess() {
+    public void waitressAcceptedOrderSuccess() {
         Kitchen kitchenMock = Mockito.mock(Kitchen.class);
         Waitress waitress = new Waitress();
         boolean expectedResult = true;
@@ -21,7 +21,7 @@ public class WaitressTest {
 
     @Test
     @DisplayName("Успешное не принятие заказа")
-    public void WaitressAcceptedOrderFailure() {
+    public void waitressAcceptedOrderFailure() {
         Kitchen kitchenMock = Mockito.mock(Kitchen.class);
         Waitress waitress = new Waitress();
         boolean expectedResult = false;

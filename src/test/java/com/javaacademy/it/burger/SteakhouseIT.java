@@ -1,6 +1,10 @@
 package com.javaacademy.it.burger;
 
-import com.javaacademy.burger.*;
+import com.javaacademy.burger.Kitchen;
+import com.javaacademy.burger.PayTerminal;
+import com.javaacademy.burger.Steakhouse;
+import com.javaacademy.burger.Waitress;
+import com.javaacademy.burger.Paycheck;
 import com.javaacademy.burger.dish.Dish;
 import com.javaacademy.burger.dish.DishType;
 import org.junit.jupiter.api.Assertions;
@@ -8,12 +12,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.math.BigDecimal;
+
 import static com.javaacademy.burger.Currency.RUB;
 import static com.javaacademy.burger.dish.DishType.RIBS;
 import static java.math.BigDecimal.valueOf;
-import static org.mockito.ArgumentMatchers.any;
+
 
 public class SteakhouseIT {
+
+    private static final BigDecimal PRICE_BURGER = valueOf(300);
+    private static final BigDecimal PRICE_RIBS = valueOf(700);
 
     @Test
     @DisplayName("Успешный прием заказа")
@@ -23,7 +32,7 @@ public class SteakhouseIT {
         PayTerminal payTerminal = new PayTerminal();
         Steakhouse steakhouse = new Steakhouse(waitress, kitchen, payTerminal);
         Paycheck result = steakhouse.makeOrder(DishType.BURGER, RUB);
-        Paycheck expected = new Paycheck(valueOf(300), RUB, DishType.BURGER);
+        Paycheck expected = new Paycheck(PRICE_BURGER, RUB, DishType.BURGER);
         Assertions.assertEquals(expected, result);
     }
 
@@ -46,7 +55,7 @@ public class SteakhouseIT {
         Waitress waitress = new Waitress();
         Kitchen kitchen = new Kitchen();
         PayTerminal payTerminal = Mockito.mock(PayTerminal.class);
-        Paycheck expectedPaycheck = new Paycheck(valueOf(700), RUB, RIBS);
+        Paycheck expectedPaycheck = new Paycheck(PRICE_RIBS, RUB, RIBS);
         Mockito.when(payTerminal.pay(RIBS, RUB))
                 .thenReturn(expectedPaycheck);
         Steakhouse steakhouse = new Steakhouse(waitress, kitchen, payTerminal);
